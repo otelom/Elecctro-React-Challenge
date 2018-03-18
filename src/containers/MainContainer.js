@@ -30,13 +30,13 @@ class MainContainer extends Component {
                         />
                         Criação
                         <input type="radio" checked={this.state.selectedOption === 'option1'}
-                               onClick={() => this.setState({selectedOption: 'option1'})}/>
+                               onChange={() => this.setState({selectedOption: 'option1'})}/>
                         A-Z
                         <input type="radio" checked={this.state.selectedOption === 'option2'}
-                               onClick={() => this.setState({selectedOption: 'option2'})}/>
+                               onChange={() => this.setState({selectedOption: 'option2'})}/>
                         Z-A
                         <input type="radio" checked={this.state.selectedOption === /** @type {string} */ 'option3'}
-                               onClick={() => this.setState({selectedOption: 'option3'})}/>
+                               onChange={() => this.setState({selectedOption: 'option3'})}/>
                 </div>
                 <div className="TODOsList">
                     <List/>
