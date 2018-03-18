@@ -11,7 +11,6 @@ import reducer from "./reducers/reducers";
 
 let store = createStore(reducer)
 //let store = createStore(todoApp, window.STATE_FROM_SERVER)
-console.log(store.getState())
 ReactDOM.render(
     <Provider store={store}>
         <App />

@@ -11,7 +11,7 @@ class TODOsList extends Component {
         const listItems = this.props.tasks.map((task) =>{
 
             return (
-                <TODO ID={task.ID} text={task.text}/>
+                <TODO ID={task.ID} text={task.text} completed={task.completed}/>
             )
         });
 

@@ -6,7 +6,7 @@
 export const Types = {
     ADD_TODO: 'ADD',
     EDIT_TODO: 'EDIT',
-    MARK_COMPLETE: 'MARK_COMPLETE',
+    CHECK: 'CHECK',
     MARK_INCOMPLETE: 'MARK_INCOMPLETE',
     DELETE_TODO: 'DELETE'
 }
@@ -24,7 +24,7 @@ export const VisibilityFilters = {
  */
 export const add = (text: string) => ({ type: Types.ADD_TODO, text });
 export const edit = (ID: number, text: string) => ({ type: Types.EDIT_TODO, ID, text });
-export const complete = (ID: number) => ({ type: Types.MARK_COMPLETE, ID });
+export const check = (ID: number) => ({ type: Types.CHECK, ID });
 export const incomplete = (ID: number) => ({ type: Types.MARK_INCOMPLETE, ID });
 export const del = (ID: number) => ({ type: Types.DELETE_TODO, ID });
 

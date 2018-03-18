@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from "react-redux";
-import {del, edit} from "../actions/Actions";
+import {check, del, edit} from "../actions/Actions";
 
 
 class TODO extends Component {
@@ -9,7 +9,8 @@ class TODO extends Component {
         super(props);
         this.state = {
             editMode: false,
-            text: props.text
+            text: props.text,
+            class: props.completed ? 'checked item' : 'item'
         };
     }
 
@@ -34,12 +35,18 @@ class TODO extends Component {
 
     }
 
+    componentWillReceiveProps(){
+        this.setState({class: this.props.completed ? 'checked item' : 'item'})
+    }
+
     render() {
 
+
         return (
-            <li className="item" key={this.props.ID} onClick={() => this.setState({editMode: true})}>
-                {this.checkEditMode()}
-                <span onClick={(event) => {this.props.remove(this.props.ID); event.stopPropagation();}}>×</span>
+            <li className={this.state.class} key={this.props.ID} onClick={() => this.setState({editMode: true})}>
+                <span className="check" onClick={(event) => {this.props.check(this.props.ID); event.stopPropagation();}}>✓</span>
+                <span className="text"> {this.checkEditMode()} </span>
+                <span className="delete" onClick={(event) => {this.props.remove(this.props.ID); event.stopPropagation();}}>×</span>
             </li>
         );
     }
@@ -47,7 +54,8 @@ class TODO extends Component {
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
     remove: (id) => dispatch(del(id)),
-    editTODO: (id, text) => dispatch(edit(id, text))
+    editTODO: (id, text) => dispatch(edit(id, text)),
+    check: (id) => dispatch(check(id))
 });
 
 export default connect(null, mapDispatchToProps)(TODO);

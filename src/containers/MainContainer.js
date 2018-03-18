@@ -1,9 +1,6 @@
 import React, {Component} from 'react';
-import Task from '../components/TODO';
 import NewTODO from '../components/NewTODO';
 import List from './TODOsList';
-import {del} from "../actions/Actions";
-import {connect} from "react-redux";
 
 class MainContainer extends Component {
 
