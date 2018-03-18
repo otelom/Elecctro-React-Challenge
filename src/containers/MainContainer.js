@@ -1,0 +1,52 @@
+import React, {Component} from 'react';
+import Task from '../components/TODO';
+import NewTODO from '../components/NewTODO';
+import List from './TODOsList';
+import {del} from "../actions/Actions";
+import {connect} from "react-redux";
+
+class MainContainer extends Component {
+
+    constructor() {
+        super();
+        this.state = {
+            selectedOption: 'option2',
+            hideSelectedOption: false
+        };
+    }
+
+
+    render() {
+        //  return null;
+        return (
+            <div className="container">
+                <div className="newTODO">
+                    <NewTODO/>
+                </div>
+                <div className="settings">
+                        Hide completed
+                        <input
+                            name="hideCompleted"
+                            type="checkbox"
+                            checked={this.state.hideSelectedOption}
+                            onClick={() => this.setState({hideSelectedOption: !this.state.hideSelectedOption})}
+                        />
+                        Criação
+                        <input type="radio" checked={this.state.selectedOption === 'option1'}
+                               onClick={() => this.setState({selectedOption: 'option1'})}/>
+                        A-Z
+                        <input type="radio" checked={this.state.selectedOption === 'option2'}
+                               onClick={() => this.setState({selectedOption: 'option2'})}/>
+                        Z-A
+                        <input type="radio" checked={this.state.selectedOption === /** @type {string} */ 'option3'}
+                               onClick={() => this.setState({selectedOption: 'option3'})}/>
+                </div>
+                <div className="TODOsList">
+                    <List/>
+                </div>
+            </div>
+        );
+    }
+}
+
+export default MainContainer;

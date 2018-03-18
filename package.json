@@ -1,20 +1,27 @@
 {
   "name": "react-challenge",
+  "main": "lib/index.js",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
     "immutable": "^3.8.2",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
+    "react-redux": "^5.0.7",
     "react-scripts": "1.1.1",
     "redux": "^3.7.2",
     "reselect": "^3.0.1"
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "build": "flow-remove-types src/ -d lib/",
     "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "prepublish": "npm run build",
+    "flow": "flow"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "flow-bin": "^0.68.0",
+    "flow-remove-types": "^1.2.3"
+  }
 }
