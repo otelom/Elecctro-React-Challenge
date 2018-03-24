@@ -1,8 +1,8 @@
-.settings, .subtitle{
+.settings, .subtitle {
     padding: 6px;
 }
 
-.alignLeft{
+.alignLeft {
     text-align: left;
 }
 
@@ -19,14 +19,15 @@
     flex-direction: column;
     justify-content: center;
     margin: 0px auto;
-    overflow:auto;
+    overflow: auto;
 }
 
 @media only screen and (max-width: 992px) {
     .container {
         width: 100%;
     }
-    .App-logo{
+
+    .App-logo {
         width: 80%;
         height: 80%;
     }
@@ -38,7 +39,7 @@
     justify-content: space-around;
 }
 
-ul  {
+ul {
     padding: 0;
     margin: 0;
 }
@@ -73,7 +74,7 @@ ul li:hover {
 }
 
 /* When clicked on, add a background color and strike out text */
-ul li.checked{
+ul li.checked {
     background: #4B0101;
     text-decoration: line-through;
 }
@@ -99,11 +100,11 @@ ul li.checked{
     font-size: 16px;
 }
 
-.child, .New-Task input:focus, button:focus{
+.child, .New-Task input:focus, button:focus {
     outline: none;
 }
 
-.New-Task input{
+.New-Task input {
     background-color: #E69090;
     color: white;
 }
@@ -112,7 +113,7 @@ ul li.checked{
     color: white;
 }
 
-ul li input{
+ul li input {
     background-color: transparent;
     border: transparent;
     width: 100%;
@@ -137,7 +138,7 @@ ul li input{
     background-color: #4B0101;
 }
 
-.delete{
+.delete {
     position: absolute;
     right: 0;
     top: 0;
@@ -149,7 +150,7 @@ ul li input{
     color: white;
 }
 
-.check{
+.check {
     position: absolute;
     left: 0;
     top: 0;
@@ -161,7 +162,7 @@ ul li input{
     color: white;
 }
 
-html{
+html {
     text-align: center;
     color: white;
     background-image: url("./background.jpg");

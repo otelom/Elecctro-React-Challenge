@@ -6,12 +6,26 @@ import {ActionTypes, VisibilityFilters, COMPLETE, INCOMPLETE, ALL, DATE_ADDED} f
 /*
  * Action Creators
  */
-export const added = (id: string, text: string, state: string) => ({ type: ActionTypes.ADD_TODO, id, text, state });
-export const edited = (id: string, text: string, state: string) => ({ type: ActionTypes.EDIT_TODO, id, text, state });
-export const checked = (id: string, text: string, state: string) => ({ type: ActionTypes.MARK_COMPLETE, id, text, state });
-export const unchecked = (id: string, text: string, state: string) => ({ type: ActionTypes.MARK_INCOMPLETE, id, text, state });
-export const deleted = (id: string) => ({ type: ActionTypes.DELETE_TODO, id});
-export const listObtained = (list: Array<{id: string, text: string, state: string}>, order: string) => ({ type: VisibilityFilters.ORDER, list, order});
+export const added = (id: string, text: string, state: string) => ({type: ActionTypes.ADD_TODO, id, text, state});
+export const edited = (id: string, text: string, state: string) => ({type: ActionTypes.EDIT_TODO, id, text, state});
+export const checked = (id: string, text: string, state: string) => ({
+    type: ActionTypes.MARK_COMPLETE,
+    id,
+    text,
+    state
+});
+export const unchecked = (id: string, text: string, state: string) => ({
+    type: ActionTypes.MARK_INCOMPLETE,
+    id,
+    text,
+    state
+});
+export const deleted = (id: string) => ({type: ActionTypes.DELETE_TODO, id});
+export const listObtained = (list: Array<{ id: string, text: string, state: string }>, order: string) => ({
+    type: VisibilityFilters.ORDER,
+    list,
+    order
+});
 
 export const add = (text: string) => {
     return dispatch => {
@@ -24,8 +38,8 @@ export const add = (text: string) => {
                 "Content-Type": "application/json"
             },
         }).then(response => {
-            if (response.status >= 400){
-                console.log("Unexpected message from server: ",response);
+            if (response.status >= 400) {
+                console.log("Unexpected message from server: ", response);
                 return;
             }
             response.json().then(todo => dispatch(added(todo.id, todo.description, todo.state)));
@@ -35,7 +49,7 @@ export const add = (text: string) => {
 
 export const edit = (id: string, text: string) => {
     return dispatch => {
-        fetch('http://localhost:8000/todos/'+id,{
+        fetch('http://localhost:8000/todos/' + id, {
             method: "PATCH",
             body: JSON.stringify({
                 description: text
@@ -44,8 +58,8 @@ export const edit = (id: string, text: string) => {
                 "Content-Type": "application/json"
             },
         }).then(response => {
-            if (response.status >= 400){
-                console.log("Unexpected message from server: ",response);
+            if (response.status >= 400) {
+                console.log("Unexpected message from server: ", response);
                 return;
             }
             response.json().then(todo => dispatch(edited(todo.id, todo.description, todo.state)));
@@ -55,7 +69,7 @@ export const edit = (id: string, text: string) => {
 
 export const check = (id: string) => {
     return dispatch => {
-        fetch('http://localhost:8000/todos/'+id,{
+        fetch('http://localhost:8000/todos/' + id, {
             method: "PATCH",
             body: JSON.stringify({
                 state: COMPLETE
@@ -64,19 +78,22 @@ export const check = (id: string) => {
                 "Content-Type": "application/json"
             },
         }).then(response => {
-            if (response.status >= 400){
-                console.log("Unexpected message from server: ",response);
+            if (response.status >= 400) {
+                console.log("Unexpected message from server: ", response);
                 return;
             }
 
-            response.json().then(todo => {console.log("resposta: ",todo,"todo.state ",todo.state); return dispatch(checked(todo.id, todo.description, todo.state))});
+            response.json().then(todo => {
+                console.log("resposta: ", todo, "todo.state ", todo.state);
+                return dispatch(checked(todo.id, todo.description, todo.state))
+            });
         });
     }
 };
 
 export const uncheck = (id: string) => {
     return dispatch => {
-        fetch('http://localhost:8000/todos/'+id,{
+        fetch('http://localhost:8000/todos/' + id, {
             method: "PATCH",
             body: JSON.stringify({
                 state: INCOMPLETE
@@ -85,8 +102,8 @@ export const uncheck = (id: string) => {
                 "Content-Type": "application/json"
             },
         }).then(response => {
-            if (response.status >= 400){
-                console.log("Unexpected message from server: ",response);
+            if (response.status >= 400) {
+                console.log("Unexpected message from server: ", response);
                 return;
             }
             response.json().then(todo => dispatch(unchecked(todo.id, todo.description, todo.state)));
@@ -96,11 +113,11 @@ export const uncheck = (id: string) => {
 
 export const del = (id: string) => {
     return dispatch => {
-        fetch('http://localhost:8000/todos/'+id,{
+        fetch('http://localhost:8000/todos/' + id, {
             method: "DELETE",
         }).then(response => {
-            if (response.status >= 400){
-                console.log("Unexpected message from server: ",response);
+            if (response.status >= 400) {
+                console.log("Unexpected message from server: ", response);
                 return;
             }
             dispatch(deleted(id));
@@ -110,11 +127,11 @@ export const del = (id: string) => {
 
 export const getList = (orderBy: string = DATE_ADDED, filter: string = ALL, order: string = '') => {
     return dispatch => {
-        fetch('http://localhost:8000/todos?orderBy='+orderBy+'&filter='+filter,{
+        fetch('http://localhost:8000/todos?orderBy=' + orderBy + '&filter=' + filter, {
             method: "GET",
         }).then(response => {
-            if (response.status >= 400){
-                console.log("Unexpected message from server: ",response);
+            if (response.status >= 400) {
+                console.log("Unexpected message from server: ", response);
                 return;
             }
             response.json().then(todosList => dispatch(listObtained(todosList, order)));

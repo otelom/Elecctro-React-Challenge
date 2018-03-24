@@ -26,6 +26,7 @@ class TODO extends Component {
     setWrapperRef(node) {
         this.wrapperRef = node;
     }
+
     handleClickOutside(event) {
         if (this.state.editMode && this.wrapperRef && !this.wrapperRef.contains(event.target)) {
             if (this.state.text !== '') {
@@ -35,14 +36,14 @@ class TODO extends Component {
         }
     }
 
-    _handleKeyPress = function(e) {
+    _handleKeyPress = function (e) {
         if (e.key === 'Enter' && this.state.text !== '') {
             this.props.editTODO(this.props.id, this.state.text)
             this.setState({editMode: false})
         }
     };
 
-    checkEditMode()  {
+    checkEditMode() {
         if (!this.state.editMode)
             return this.props.text;
         else
@@ -55,15 +56,15 @@ class TODO extends Component {
             />;
     }
 
-    componentWillReceiveProps(nextProps){
+    componentWillReceiveProps(nextProps) {
         this.setState({class: nextProps.state === COMPLETE ? 'checked item' : 'item'})
     }
 
-    handleStatusChange(event){
-        if(this.props.state === 'INCOMPLETE'){
+    handleStatusChange(event) {
+        if (this.props.state === 'INCOMPLETE') {
             this.props.check(this.props.id);
         }
-        else{
+        else {
             this.props.uncheck(this.props.id);
         }
         event.stopPropagation();
@@ -77,7 +78,10 @@ class TODO extends Component {
                 <div ref={this.setWrapperRef}>
                     <span className="itemText"> {this.checkEditMode()} </span>
                 </div>
-                <span className="delete" onClick={(event) => {this.props.remove(this.props.id); event.stopPropagation();}}>×</span>
+                <span className="delete" onClick={(event) => {
+                    this.props.remove(this.props.id);
+                    event.stopPropagation();
+                }}>×</span>
             </li>
         );
     }
