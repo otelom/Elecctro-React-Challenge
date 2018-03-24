@@ -1,12 +1,3 @@
-.LOLMain-Container{
-    height: 100%;
-    width: 50%;
-    display: flex; /* or inline-flex */
-    flex-direction: column;
-    flex-wrap: nowrap;
-    align-content: center;
-}
-
 .settings, .subtitle{
     padding: 6px;
 }
@@ -19,20 +10,15 @@
     flex: 1;
 }
 
-
 .container {
     display: flex;
-    height: 70%; /* Or whatever */
+    height: 70%;
     width: 60%;
-    /*text-align: center;*/
-    /*justify-content: center;*/
     background-color: #731616;
     border: 5px solid #4B0101;
     flex-direction: column;
     justify-content: center;
-    /*flex-wrap: wrap;*/
     margin: 0px auto;
-
     overflow:auto;
 }
 
@@ -46,20 +32,9 @@
     }
 }
 
-
 .Main-Container {
-    /* We first create a flex layout context */
     display: flex;
-
-    /* Then we define the flow direction
-       and if we allow the items to wrap
-     * Remember this is the same as:
-     * flex-direction: row;
-     * flex-wrap: wrap;
-     */
     flex-flow: column wrap;
-
-    /* Then we define how is distributed the remaining space */
     justify-content: space-around;
 }
 
@@ -72,7 +47,7 @@ ul  {
 ul li {
     cursor: pointer;
     position: relative;
-    padding: 12px 0px 12px 0px;
+    padding: 12px 0 12px 0;
     list-style-type: none;
     background: #9A3333;
     font-size: 18px;
@@ -184,4 +159,28 @@ ul li input{
 .check:hover {
     background-color: #4B0101;
     color: white;
+}
+
+html{
+    text-align: center;
+    color: white;
+    background-image: url("./background.jpg");
+    background-size: cover;
+    background-position: center center;
+}
+
+.App-logo {
+    height: 80%;
+}
+
+.App-title {
+    font-size: 1.5em;
+    color: #9A3333;
+    margin: 0px auto;
+    align-content: center;
+}
+
+.App-header {
+    height: 100%;
+    padding: 20px;
 }

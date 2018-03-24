@@ -1,11 +1,9 @@
 import React, {Component} from 'react';
 import {connect} from "react-redux";
 import {check, uncheck, del, edit} from "../actions/Actions";
-
-const COMPLETE = 'COMPLETE';
+import {COMPLETE} from '../constants/constants';
 
 class TODO extends Component {
-
     constructor(props) {
         super(props);
         this.state = {
@@ -55,7 +53,6 @@ class TODO extends Component {
                 placeholder={"Type here a new TODO"}
                 onKeyPress={this._handleKeyPress.bind(this)}
             />;
-
     }
 
     componentWillReceiveProps(nextProps){
@@ -92,6 +89,5 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
     check: (id) => dispatch(check(id)),
     uncheck: (id) => dispatch(uncheck(id))
 });
-
 
 export default connect(null, mapDispatchToProps)(TODO);

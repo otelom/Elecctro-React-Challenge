@@ -3,16 +3,9 @@ import NewTODO from '../components/NewTODO';
 import List from './TODOsList';
 import {connect} from "react-redux";
 import {getList} from "../actions/Actions";
-
-const INCOMPLETE = "INCOMPLETE";
-const ALL = "ALL";
-const AZ = "AZ";
-const ZA = "ZA";
-const DESCRIPTION = 'DESCRIPTION';
-const DATE_ADDED = "DATE_ADDED";
+import {INCOMPLETE, ALL, DATE_ADDED, AZ, ZA, DESCRIPTION} from '../constants/constants';
 
 class MainContainer extends Component {
-
     constructor() {
         super();
         this.state = {
@@ -59,21 +52,16 @@ class MainContainer extends Component {
 
     componentDidUpdate(prevProps, prevState) {
         if(prevState.hideSelectedOption !== this.state.hideSelectedOption) {
-            console.log("did update, reordering now...");
-            console.log("also, new keys are: ", this.state.orderBy,this.state.filter);
-        //  this.state.hideSelectedOption ? this.setState({filter: INCOMPLETE}) : this.setState({filter: ALL});
             this.props.reOrder(this.state.orderBy, this.state.filter, this.state.order)
         }
     }
 
     render() {
-        //  return null;
         return (
             <div className="container">
                 <div className="newTODO">
                     <NewTODO/>
                 </div>
-
                 <div className="subtitle alignLeft" onClick={() => this.handleReOrderRequest()}>Tasks</div>
                 <div className="TODOsList">
                     <List/>
@@ -92,10 +80,6 @@ class MainContainer extends Component {
     }
 }
 
-
-/*const mapStateToProps = (state) => ({
-    tasks: state.get('tasks').toJS()
-});*/
 const mapDispatchToProps = (dispatch, ownProps) => ({
     reOrder: (orderBy, filter, order = '') => dispatch(getList(orderBy, filter, order))
 });

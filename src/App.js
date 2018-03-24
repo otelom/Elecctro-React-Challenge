@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import logo from './logo.png';
-import './App.css';
 import './style.css';
 import MainContainer from './containers/MainContainer'
 

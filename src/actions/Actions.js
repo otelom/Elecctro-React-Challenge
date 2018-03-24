@@ -1,46 +1,17 @@
 //flow
 
 import fetch from 'cross-fetch'
-
-/*
- * ActionTypes
- */
-export const Types = {
-    ADD_TODO: 'ADD',
-    EDIT_TODO: 'EDIT',
-    CHECK: 'CHECK',
-    MARK_INCOMPLETE: 'MARK_INCOMPLETE',
-    DELETE_TODO: 'DELETE'
-}
-
-/*
- * Other Constants
- */
-export const VisibilityFilters = {
-    HIDE_COMPLETED: 'HIDE_COMPLETED',
-    ORDER: 'ORDER'
-}
+import {ActionTypes, VisibilityFilters, COMPLETE, INCOMPLETE, ALL, DATE_ADDED} from '../constants/constants';
 
 /*
  * Action Creators
  */
-// PASSAR PARA PASSADO VISTO QUE ESTAS  ACLÕES VÃO PASSAR A SER EXECUTADAS DEPOIS DAS QUE CHAMAM A API
-export const added = (id: string, text: string, state: string) => ({ type: Types.ADD_TODO, id, text, state });
-export const edited = (id: string, text: string, state: string) => ({ type: Types.EDIT_TODO, id, text, state });
-export const checked = (id: string, text: string, state: string) => ({ type: Types.CHECK, id, text, state });
-export const unchecked = (id: string, text: string, state: string) => ({ type: Types.MARK_INCOMPLETE, id, text, state });
-export const deleted = (id: string) => ({ type: Types.DELETE_TODO, id});
-
-export const hideCompleted = (list: Array<{id: string, text: string, state: string}>) => ({ type: VisibilityFilters.HIDE_COMPLETED, list});
+export const added = (id: string, text: string, state: string) => ({ type: ActionTypes.ADD_TODO, id, text, state });
+export const edited = (id: string, text: string, state: string) => ({ type: ActionTypes.EDIT_TODO, id, text, state });
+export const checked = (id: string, text: string, state: string) => ({ type: ActionTypes.MARK_COMPLETE, id, text, state });
+export const unchecked = (id: string, text: string, state: string) => ({ type: ActionTypes.MARK_INCOMPLETE, id, text, state });
+export const deleted = (id: string) => ({ type: ActionTypes.DELETE_TODO, id});
 export const listObtained = (list: Array<{id: string, text: string, state: string}>, order: string) => ({ type: VisibilityFilters.ORDER, list, order});
-// ATÉ AQUI - AGORA DAQUI PARA BAIXO É API
-
-const COMPLETE = "COMPLETE";
-const INCOMPLETE = "INCOMPLETE";
-const ALL = "ALL";
-const AZ = "AZ";
-const ZA = "ZA";
-const DATE_ADDED = "DATE_ADDED";
 
 export const add = (text: string) => {
     return dispatch => {
@@ -138,7 +109,6 @@ export const del = (id: string) => {
 };
 
 export const getList = (orderBy: string = DATE_ADDED, filter: string = ALL, order: string = '') => {
-    console.log("action creator recebeu hetList com ", orderBy, filter, order);
     return dispatch => {
         fetch('http://localhost:8000/todos?orderBy='+orderBy+'&filter='+filter,{
             method: "GET",

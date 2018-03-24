@@ -15,14 +15,14 @@ class NewTODO extends Component {
         if (e.key === 'Enter') {
             this.addFunction();
         }
-    }
+    };
 
     addFunction(){
         if(this.state.text !== '') {
             this.props.addTODO(this.state.text);
             this.setState({text: ''});
         }
-    }
+    };
 
   render() {
     return (
@@ -33,7 +33,6 @@ class NewTODO extends Component {
               onChange={(e) => this.setState({text: e.target.value})}
               placeholder={"Type here a new TODO"}
               onKeyPress={this._handleKeyPress.bind(this)}
-
           />
           <button
               className="addBtn"
@@ -41,9 +40,6 @@ class NewTODO extends Component {
               Adicionar
           </button>
       </div>
-
-
-
   );
   }
 }
@@ -57,4 +53,3 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(NewTODO);
-
