@@ -23,6 +23,11 @@ class MainContainer extends Component {
         };
     }
 
+    componentWillMount() {
+        console.log("props ", this.props);
+        this.props.reOrder(this.props.orderBy, this.props.filter);
+    }
+
     handleReOrderRequest(){
             switch (this.state.orderBy) {
                 case DATE_ADDED: {
@@ -69,18 +74,19 @@ class MainContainer extends Component {
                 <div className="newTODO">
                     <NewTODO/>
                 </div>
-                <div className="settings">
-                        Hide completed
-                        <input
-                            name="hideCompleted"
-                            type="checkbox"
-                            checked={this.state.hideSelectedOption}
-                            onClick={() => this.handleClick()}
-                        />
-                </div>
+
                 <div className="alignLeft" onClick={() => this.handleReOrderRequest()}>Tasks</div>
                 <div className="TODOsList">
                     <List/>
+                </div>
+                <div className="settings alignLeft">
+                    Hide completed
+                    <input
+                        name="hideCompleted"
+                        type="checkbox"
+                        checked={this.state.hideSelectedOption}
+                        onClick={() => this.handleClick()}
+                    />
                 </div>
             </div>
         );

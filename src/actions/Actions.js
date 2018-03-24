@@ -55,6 +55,7 @@ export const add = (text: string) => {
         }).then(response => {
             if (response.status >= 400){
                 console.log("Unexpected message from server: ",response);
+                return;
             }
             response.json().then(todo => dispatch(added(todo.id, todo.description, todo.state)));
         });
@@ -74,6 +75,7 @@ export const edit = (id: string, text: string) => {
         }).then(response => {
             if (response.status >= 400){
                 console.log("Unexpected message from server: ",response);
+                return;
             }
             response.json().then(todo => dispatch(edited(todo.id, todo.description, todo.state)));
         });
@@ -93,6 +95,7 @@ export const check = (id: string) => {
         }).then(response => {
             if (response.status >= 400){
                 console.log("Unexpected message from server: ",response);
+                return;
             }
 
             response.json().then(todo => {console.log("resposta: ",todo,"todo.state ",todo.state); return dispatch(checked(todo.id, todo.description, todo.state))});
@@ -113,6 +116,7 @@ export const uncheck = (id: string) => {
         }).then(response => {
             if (response.status >= 400){
                 console.log("Unexpected message from server: ",response);
+                return;
             }
             response.json().then(todo => dispatch(unchecked(todo.id, todo.description, todo.state)));
         });
@@ -126,6 +130,7 @@ export const del = (id: string) => {
         }).then(response => {
             if (response.status >= 400){
                 console.log("Unexpected message from server: ",response);
+                return;
             }
             dispatch(deleted(id));
         });
@@ -140,6 +145,7 @@ export const getList = (orderBy: string = DATE_ADDED, filter: string = ALL, orde
         }).then(response => {
             if (response.status >= 400){
                 console.log("Unexpected message from server: ",response);
+                return;
             }
             response.json().then(todosList => dispatch(listObtained(todosList, order)));
         });
