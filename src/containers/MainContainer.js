@@ -24,7 +24,6 @@ class MainContainer extends Component {
     }
 
     componentWillMount() {
-        console.log("props ", this.props);
         this.props.reOrder(this.props.orderBy, this.props.filter);
     }
 
@@ -75,7 +74,7 @@ class MainContainer extends Component {
                     <NewTODO/>
                 </div>
 
-                <div className="alignLeft" onClick={() => this.handleReOrderRequest()}>Tasks</div>
+                <div className="subtitle alignLeft" onClick={() => this.handleReOrderRequest()}>Tasks</div>
                 <div className="TODOsList">
                     <List/>
                 </div>

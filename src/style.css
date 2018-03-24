@@ -7,6 +7,10 @@
     align-content: center;
 }
 
+.settings, .subtitle{
+    padding: 6px;
+}
+
 .alignLeft{
     text-align: left;
 }
@@ -15,20 +19,32 @@
     flex: 1;
 }
 
+
 .container {
     display: flex;
-    height: 80%; /* Or whatever */
-    width: 50%;
+    height: 70%; /* Or whatever */
+    width: 60%;
     /*text-align: center;*/
     /*justify-content: center;*/
-    background-color: aqua;
-    border: 5px solid red;
+    background-color: #731616;
+    border: 5px solid #4B0101;
     flex-direction: column;
     justify-content: center;
     /*flex-wrap: wrap;*/
-    margin:0px auto;
+    margin: 0px auto;
+
+    overflow:auto;
 }
 
+@media only screen and (max-width: 992px) {
+    .container {
+        width: 100%;
+    }
+    .App-logo{
+        width: 80%;
+        height: 80%;
+    }
+}
 
 
 .Main-Container {
@@ -58,10 +74,12 @@ ul li {
     position: relative;
     padding: 12px 0px 12px 0px;
     list-style-type: none;
-    background: #eee;
+    background: #9A3333;
     font-size: 18px;
     transition: 0.2s;
-
+    text-align: left;
+    padding-left: 50px;
+    padding-right: 50px;
     /* make the list items unselectable */
     -webkit-user-select: none;
     -moz-user-select: none;
@@ -71,39 +89,19 @@ ul li {
 
 /* Set all odd list items to a different color (zebra-stripes) */
 ul li:nth-child(odd) {
-    background: #f9f9f9;
+    background: #BA5656;
 }
 
 /* Darker background-color on hover */
 ul li:hover {
-    background: #ddd;
+    background: #E69090;
 }
 
 /* When clicked on, add a background color and strike out text */
-ul li.checked .text {
-    background: #888;
-    color: #fff;
+ul li.checked{
+    background: #4B0101;
     text-decoration: line-through;
 }
-
-ul li.checked {
-    background: #888;
-    color: #fff;
-}
-
-/* Add a "checked" mark when clicked on */
-/*ul li.checked::before {
-    content: '';
-    position: absolute;
-    border-color: #fff;
-    border-style: solid;
-    border-width: 0 2px 2px 0;
-    top: 10px;
-    left: 16px;
-    transform: rotate(45deg);
-    height: 15px;
-    width: 7px;
-}*/
 
 /* Style the close button */
 .close {
@@ -114,40 +112,54 @@ ul li.checked {
 }
 
 .close:hover {
-    background-color: #f44336;
-    color: white;
+    background-color: #4B0101;
 }
 
 /* Style the input */
 .child, .New-Task input {
     border: none;
-    width: calc(70% - 10px);
+    width: calc(70% - 20px);
     padding: 10px;
-    padding-left: 10px;
     float: left;
     font-size: 16px;
 }
 
-.child, .New-Task input:focus{
+.child, .New-Task input:focus, button:focus{
+    outline: none;
+}
+
+.New-Task input{
+    background-color: #E69090;
+    color: white;
+}
+
+.New-Task input::placeholder {
+    color: white;
+}
+
+ul li input{
+    background-color: transparent;
+    border: transparent;
+    width: 100%;
     outline: none;
 }
 
 /* Style the "Add" button */
 .addBtn {
     padding: 10px;
-    width: calc(30% - 10px);
-    background: #d9d9d9;
-    color: #555;
+    width: 30%;
+    background: #BA5656;
     float: left;
     text-align: center;
     font-size: 16px;
     cursor: pointer;
     transition: 0.3s;
     border: 0;
+    color: white;
 }
 
 .addBtn:hover {
-    background-color: #bbb;
+    background-color: #4B0101;
 }
 
 .delete{
@@ -158,10 +170,9 @@ ul li.checked {
 }
 
 .delete:hover {
-    background-color: #f44336;
+    background-color: #4B0101;
     color: white;
 }
-
 
 .check{
     position: absolute;
@@ -171,6 +182,6 @@ ul li.checked {
 }
 
 .check:hover {
-    background-color: #f44336;
+    background-color: #4B0101;
     color: white;
 }
