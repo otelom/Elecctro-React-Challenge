@@ -49,7 +49,7 @@ export const add = (text: string) => {
 
 export const edit = (id: string, text: string) => {
     return dispatch => {
-        fetch('http://localhost:8000/todos/' + id, {
+        fetch(URI+'todos/' + id, {
             method: "PATCH",
             body: JSON.stringify({
                 description: text
