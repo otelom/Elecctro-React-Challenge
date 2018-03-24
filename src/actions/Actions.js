@@ -1,7 +1,7 @@
 //flow
 
 import fetch from 'cross-fetch'
-import {ActionTypes, VisibilityFilters, COMPLETE, INCOMPLETE, ALL, DATE_ADDED} from '../constants/constants';
+import {ActionTypes, VisibilityFilters, COMPLETE, INCOMPLETE, ALL, DATE_ADDED, URI} from '../constants/constants';
 
 /*
  * Action Creators
@@ -29,7 +29,7 @@ export const listObtained = (list: Array<{ id: string, text: string, state: stri
 
 export const add = (text: string) => {
     return dispatch => {
-        fetch('http://localhost:8000/todos', {
+        fetch(URI+'todos', {
             method: "PUT",
             body: JSON.stringify({
                 description: text
@@ -69,7 +69,7 @@ export const edit = (id: string, text: string) => {
 
 export const check = (id: string) => {
     return dispatch => {
-        fetch('http://localhost:8000/todos/' + id, {
+        fetch(URI+'todos/' + id, {
             method: "PATCH",
             body: JSON.stringify({
                 state: COMPLETE
@@ -93,7 +93,7 @@ export const check = (id: string) => {
 
 export const uncheck = (id: string) => {
     return dispatch => {
-        fetch('http://localhost:8000/todos/' + id, {
+        fetch(URI+'todos/' + id, {
             method: "PATCH",
             body: JSON.stringify({
                 state: INCOMPLETE
@@ -113,7 +113,7 @@ export const uncheck = (id: string) => {
 
 export const del = (id: string) => {
     return dispatch => {
-        fetch('http://localhost:8000/todos/' + id, {
+        fetch(URI+'todos/' + id, {
             method: "DELETE",
         }).then(response => {
             if (response.status >= 400) {
@@ -127,7 +127,7 @@ export const del = (id: string) => {
 
 export const getList = (orderBy: string = DATE_ADDED, filter: string = ALL, order: string = '') => {
     return dispatch => {
-        fetch('http://localhost:8000/todos?orderBy=' + orderBy + '&filter=' + filter, {
+        fetch(URI+'todos?orderBy=' + orderBy + '&filter=' + filter, {
             method: "GET",
         }).then(response => {
             if (response.status >= 400) {

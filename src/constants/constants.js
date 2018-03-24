@@ -5,6 +5,7 @@ export const ALL = "ALL";
 export const AZ = "AZ";
 export const DATE_ADDED = "DATE_ADDED";
 export const DESCRIPTION = 'DESCRIPTION';
+export const URI = 'http://localhost:8000/';
 
 export const ActionTypes = {
     ADD_TODO: 'ADD',
