@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
 import {connect} from "react-redux";
-import {check, del, edit} from "../actions/Actions";
+import {check, uncheck, del, edit} from "../actions/Actions";
 
+const COMPLETE = 'COMPLETE';
 
 class TODO extends Component {
 
@@ -10,13 +11,13 @@ class TODO extends Component {
         this.state = {
             editMode: false,
             text: props.text,
-            class: props.completed ? 'checked item' : 'item'
+            class: props.state === COMPLETE ? 'checked item' : 'item'
         };
     }
 
     _handleKeyPress = function(e) {
         if (e.key === 'Enter' && this.state.text !== '') {
-            this.props.editTODO(this.props.ID, this.state.text)
+            this.props.editTODO(this.props.id, this.state.text)
             this.setState({editMode: false})
         }
     };
@@ -35,18 +36,27 @@ class TODO extends Component {
 
     }
 
-    componentWillReceiveProps(){
-        this.setState({class: this.props.completed ? 'checked item' : 'item'})
+    componentWillReceiveProps(nextProps){
+        this.setState({class: nextProps.state === COMPLETE ? 'checked item' : 'item'})
+    }
+
+    handleStatusChange(event){
+        if(this.props.state === 'INCOMPLETE'){
+            this.props.check(this.props.id);
+        }
+        else{
+            this.props.uncheck(this.props.id);
+        }
+        event.stopPropagation();
     }
 
     render() {
 
-
         return (
-            <li className={this.state.class} key={this.props.ID} onClick={() => this.setState({editMode: true})}>
-                <span className="check" onClick={(event) => {this.props.check(this.props.ID); event.stopPropagation();}}>✓</span>
+            <li className={this.state.class} key={this.props.id} onClick={() => this.setState({editMode: true})}>
+                <span className="check" onClick={(event) => this.handleStatusChange(event)}>✓</span>
                 <span className="text"> {this.checkEditMode()} </span>
-                <span className="delete" onClick={(event) => {this.props.remove(this.props.ID); event.stopPropagation();}}>×</span>
+                <span className="delete" onClick={(event) => {this.props.remove(this.props.id); event.stopPropagation();}}>×</span>
             </li>
         );
     }
@@ -55,7 +65,8 @@ class TODO extends Component {
 const mapDispatchToProps = (dispatch, ownProps) => ({
     remove: (id) => dispatch(del(id)),
     editTODO: (id, text) => dispatch(edit(id, text)),
-    check: (id) => dispatch(check(id))
+    check: (id) => dispatch(check(id)),
+    uncheck: (id) => dispatch(uncheck(id))
 });
 
 export default connect(null, mapDispatchToProps)(TODO);

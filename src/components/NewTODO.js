@@ -19,7 +19,7 @@ class NewTODO extends Component {
 
     addFunction(){
         if(this.state.text !== '') {
-            this.props.addTODO(this.state.text)
+            this.props.addTODO(this.state.text);
             this.setState({text: ''});
         }
     }

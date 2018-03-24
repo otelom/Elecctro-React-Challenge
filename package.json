@@ -4,6 +4,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "cross-fetch": "^2.1.0",
     "immutable": "^3.8.2",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
@@ -13,8 +14,7 @@
     "redux-storage": "^4.1.2",
     "redux-storage-engine-localstorage": "^1.1.4",
     "redux-storage-merger-immutablejs": "^1.0.5",
-    "redux-thunk": "^2.2.0",
-    "whatwg-fetch": "^2.0.3"
+    "redux-thunk": "^2.2.0"
   },
   "scripts": {
     "start": "react-scripts start",
